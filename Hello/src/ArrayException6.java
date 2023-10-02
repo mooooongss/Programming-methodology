@@ -12,9 +12,11 @@ public class ArrayException6 {
 					System.out.println(intArray[i] / 0);
 				}
 				
+				// intentionally raise an exception
 				if(i == 1) {
 					ArithmeticException e = new ArithmeticException("intentionally raise");
 					throw e;
+					// throw new ArithmeticException("intentionally raise");
 				}
 				
 				if(i == 0) {

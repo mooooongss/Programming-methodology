@@ -6,6 +6,7 @@ public class CalendarEx {
 	public static void printCalender(String msg, Calendar cal) {
 		int year = cal.get(Calendar.YEAR);
 		
+		// get()은 0~30까지의 정수 리턴
 		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
 		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
@@ -54,9 +55,10 @@ public class CalendarEx {
 		Calendar firstDate = Calendar.getInstance();
 		firstDate.clear();
 		
-		firstDate.set(2022, 3, 9);
-		firstDate.set(Calendar.HOUR_OF_DAY, 20);
-		firstDate.set(Calendar.MINUTE, 30);
+		// 2022년 3월 9일. 3월을 표현하기 위해 month에 2로 설정
+		firstDate.set(2022, 2, 9);
+		firstDate.set(Calendar.HOUR_OF_DAY, 20);	// 저녁 8시
+		firstDate.set(Calendar.MINUTE, 30);			// 30분
 		printCalender("처음 데이트한 날은 ", firstDate);
 
 	}

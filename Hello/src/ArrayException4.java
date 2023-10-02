@@ -12,9 +12,11 @@ public class ArrayException4 {
 					System.out.println(intArray[i] / 0);
 				}
 				
+				// intentionally raise an exception
 				if(i == 1) {
 					ArithmeticException e = new ArithmeticException("intentionally raise");
 					throw e;
+					// throw new ArithmeticException("intentionally raise");
 				}
 			} catch (ArrayIndexOutOfBoundsException e1) {
 				System.out.println("Exception: ArrayIndexOutOfBounds");

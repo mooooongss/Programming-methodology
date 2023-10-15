@@ -1,47 +1,32 @@
+package ass;
+
 import java.util.Scanner;
 
-class Person {
-    private String name;
-    private String phoneNumber;
+class Phone {
+    String name;
+    String number;
 
-    public Person(String name, String phoneNumber) {
+    // 기본 생성자
+    public Phone() {
+    }
+
+    // 이름과 전화번호를 받는 생성자
+    public Phone(String name, String number) {
         this.name = name;
-        this.phoneNumber = phoneNumber;
+        this.number = number;
     }
 
-    public String getName() {
-        return name;
+    /*
+    // 이름만 받는 생성자
+    public Phone(String name) {
+        this.name = name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    // 전화번호만 받는 생성자
+    public Phone(int number) {
+        this.number = Integer.toString(number);
     }
-}
-
-class Phonebook {
-    private Person[] person;
-    private int size;
-
-    public Phonebook(int capacity) {
-        person = new Person[capacity];
-        size = 0;
-    }
-
-    public void addPerson(Person person) {
-        if (size < person.length) {
-            person[size] = person;
-            size++;
-        }
-    }
-
-    public Person findPerson(String name) {
-        for (int i = 0; i < size; i++) {
-            if (person[i].getName().equals(name)) {
-                return person[i];
-            }
-        }
-        return null;
-    }
+    */
 }
 
 public class PhoneBook {
@@ -49,46 +34,46 @@ public class PhoneBook {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Number of Person >> ");
-        int capacity = scanner.nextInt();
-        scanner.nextLine();
+        int num = Integer.parseInt(scanner.nextLine());
 
-        Phonebook phonebook = new Phonebook(capacity);
+        Phone[] phone = new Phone[num];
 
-        for (int i = 0; i < capacity; i++) {
+        for (int i = 0; i < phone.length; i++) {
             System.out.print("Name and Phonenumber (ex. 홍길동 010-1234-5678) >> ");
             String input = scanner.nextLine();
             String[] parts = input.split(" ");
 
             if (parts.length == 2) {
                 String name = parts[0];
-                String phoneNumber = parts[1];
-                Person person = new Person(name, phoneNumber);
-                phonebook.addPerson(person);
+                String number = parts[1];
+                phone[i] = new Phone(name, number);
             } else {
-                System.out.println("Invalid input. Please enter the name and phone number separated by a space.");
-                i--;  // Retry
+                System.out.println("잘못된 입력입니다. 이름과 전화번호를 스페이스로 구분하여 입력하세요.");
+                i--;  // 다시 시도
             }
         }
-
         System.out.println("Store Done");
 
         while (true) {
             System.out.print("Name to search >> ");
-            String searchName = scanner.nextLine();
+            String name = scanner.nextLine();
 
-            if (searchName.equals("stop")) {
+            if (name.equalsIgnoreCase("stop")) {
                 break;
             }
 
-            Person foundPerson = phonebook.findPerson(searchName);
+            int check = -1;
 
-            if (foundPerson != null) {
-                System.out.println(foundPerson.getName() + "'s number is " + foundPerson.getPhoneNumber());
-            } else {
-                System.out.println(searchName + " not found");
+            for (int i = 0; i < phone.length; i++) {
+                if (name.equals(phone[i].name)) {
+                    System.out.println(name + "'s number is " + phone[i].number);
+                    check = 1;
+                }
+            }
+
+            if (check == -1) {
+                System.out.println(name + " not found");
             }
         }
-
-        scanner.close();
     }
 }

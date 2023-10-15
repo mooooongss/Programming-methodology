@@ -15,18 +15,6 @@ class Phone {
         this.name = name;
         this.number = number;
     }
-
-    /*
-    // 이름만 받는 생성자
-    public Phone(String name) {
-        this.name = name;
-    }
-
-    // 전화번호만 받는 생성자
-    public Phone(int number) {
-        this.number = Integer.toString(number);
-    }
-    */
 }
 
 public class PhoneBook {
